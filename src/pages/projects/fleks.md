@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectLayout.astro
 title: Fleks
-description: A retro-inspired theme for Astro, built using TypeScript, TailwindCSS, and Astro.
+description: A free iOS application by Fleks Holding B.V. that helps organizations manage employee scheduling, registration, and time tracking.
 tags: ["Flutter", "Amsterdam, The Netherlands"]
 githubUrl: https://apps.apple.com/us/app/fleks/id1390468228
 timestamp: 2025-02-24T02:39:03+00:00
@@ -9,20 +9,20 @@ featured: true
 filename: fleks
 
 ---
-
 ## The Details
-
-Zaggonaut is a retro-inspired theme for Astro, built using TypeScript, TailwindCSS, and Astro. Use this theme to power your own personal website, blog, or portfolio with flexibility and customization.
+Fleks is a comprehensive workforce management platform designed to streamline staff planning and scheduling. The solution helps organizations efficiently manage their employees, freelancers, and self-employed workers through an intuitive mobile app and web platform. Fleks simplifies the process of scheduling on-call employees while providing real-time visibility for both managers and workers.
 
 ## The Features
-
-- Dark & light mode
-- Customizable colors
-- 100 / 100 Lighthouse score
-- Fully accessible
-- Fully responsive
-- Type-safe
+* Job selection flexibility for workers
+* Real-time schedule management
+* Availability indication system
+* Automated registration process
+* Time tracking capabilities
+* Mobile app for on-the-go access
+* Corporate identity customization
+* Personalized application forms
+* Cross-platform compatibility
+* Intuitive calendar interface
 
 ## The Future
-
-Check out [the theme website](https://zaggonaut.dev) to see it in action!
+Check out the [Fleks](https://www.fleks.works) website to see how it can transform your workforce management and scheduling processes!
