@@ -27,7 +27,7 @@ Big fan of Tolkien, open source, and exploring new ideas.
 
 ## 🎮 Side Note
 
-I heal squads, write clean code, and quote Tolkien under fire.
+I heal the team, write clean code, and quote Tolkien under fire.
 
 ---
 
