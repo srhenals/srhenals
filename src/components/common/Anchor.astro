@@ -6,7 +6,11 @@ export type Props = {
   "aria-label"?: string;
 };
 
-const { url, external, class: className } = Astro.props;
+const { url, external: explicitExternal, class: className } = Astro.props;
+
+// Determine if a link is external (not on srhenals.com)
+const isExternal = explicitExternal || 
+  (url.startsWith('http') && !url.includes('srhenals.com'));
 ---
 
 <a
@@ -15,13 +19,13 @@ const { url, external, class: className } = Astro.props;
     "zag-offset underline font-medium flex items-center focus:outline-2 focus:outline-offset-2 focus:outline-zag-dark dark:focus:outline-zag-light",
     className,
   ]}
-  target="_blank"
-  rel="noopener noreferrer"
+  target={isExternal ? "_blank" : "_self"}
+  rel={isExternal ? "noopener noreferrer" : undefined}
   aria-label={Astro.props["aria-label"]}
 >
   <slot />
   {
-    external ? (
+    explicitExternal ? (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         class="w-6 h-6"
