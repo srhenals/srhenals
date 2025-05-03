@@ -1,12 +1,13 @@
 ---
 layout: ../../layouts/ProjectLayout.astro
-title: Zaggonaut
+title: Fleks Manager
 description: A retro-inspired theme for Astro, built using TypeScript, TailwindCSS, and Astro.
-tags: ["astro", "portfolio", "open-source"]
-githubUrl: https://github.com/RATIU5/zaggonaut
+tags: ["Flutter", "Amsterdam, The Netherlands"]
+githubUrl: https://apps.apple.com/be/app/fleks-manager/id1510483327
 timestamp: 2025-02-24T02:39:03+00:00
 featured: true
-filename: zaggonaut
+filename: fleks_manager
+
 ---
 
 ## The Details

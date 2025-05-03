@@ -4,16 +4,16 @@ export const GLOBAL = {
   // Site metadata
   username: "SRhenals",
   rootUrl: "https://zaggonaut.dev",
-  shortDescription: "Retro-Inspired Theme &<br /> Built for Astro",
+  shortDescription: "Flutter & iOS Mobile Developer",
   longDescription: "Zaggonaut is a retro-inspired theme for Astro, built using TypeScript, TailwindCSS, and Astro.",
   
   // Social media links
-  githubProfile: "https://github.com/RATIU5/zaggonaut",
-  twitterProfile: "https://twitter.com/",
-  linkedinProfile: "https://www.linkedin.com/",
+  githubProfile: "https://github.com/srhenals",
+  twitterProfile: "https://x.com/SRhenalsR",
+  linkedinProfile: "https://www.linkedin.com/in/santiagorr6/",
   
   // Common text names used throughout the site
-  articlesName: "Articles",
+  articlesName: "Blog",
   projectsName: "Projects",
   viewAll: "View All",
   
@@ -32,7 +32,7 @@ export const GLOBAL = {
   projectLongDescription: "All of my projects, including both frontend and full-stack applications.",
 
   // Profile image
-  profileImage: "michael-dam-unsplash.webp",
+  profileImage: "pp.webp",
 
   // Menu items
   menu: {
