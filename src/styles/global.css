@@ -35,14 +35,24 @@
   --font-mono: "Courier Prime", ui-monospace, monospace;
   --font-display: "Courier Prime", ui-monospace, monospace;
   --font-serif: "Courier Prime", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
-  --color-zag-dark: var(--color-neutral-900);
-  --color-zag-light: var(--color-neutral-100);
-  --color-zag-dark-muted: var(--color-neutral-600);
-  --color-zag-light-muted: var(--color-neutral-400);
-  --color-zag-accent-light: var(--color-emerald-400);
-  --color-zag-accent-light-muted: var(--color-emerald-300);
-  --color-zag-accent-dark: var(--color-emerald-600);
-  --color-zag-accent-dark-muted: var(--color-emerald-800);
+
+  /* Warm coffee-cream theme colors */
+  --color-cream: #f5f0e1;  /* Light cream background */
+  --color-coffee-dark: #3c2a21; /* Dark brown for text */
+  --color-coffee-medium: #6b4f37; /* Medium brown for muted text */
+  --color-coffee-light: #d3bd9a; /* Light brown accent */
+
+  /* Map theme colors to the existing zag colors */
+  --color-zag-light: var(--color-cream);
+  --color-zag-dark: var(--color-coffee-dark);
+  --color-zag-light-muted: var(--color-coffee-light);
+  --color-zag-dark-muted: var(--color-coffee-medium);
+
+  /* Keep accent colors for compatibility but adjust to match theme */
+  --color-zag-accent-light: #b49b7f;
+  --color-zag-accent-light-muted: #c5b8a5;
+  --color-zag-accent-dark: #8d6b4a;
+  --color-zag-accent-dark-muted: #634832;
 }
 
 @layer base {
