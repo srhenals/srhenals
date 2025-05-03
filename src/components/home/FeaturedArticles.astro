@@ -11,23 +11,45 @@ type Props = {
 const { featuredArticles } = Astro.props;
 ---
 
-<div class="flex justify-between items-center w-full">
-  <h3 class="font-display text-lg sm:text-xl leading-loose">{GLOBAL.articlesName}</h3>
-  <Anchor url="/blog" class="text-base">{GLOBAL.viewAll}</Anchor>
+<div class="fade-in-section">
+  <div class="flex justify-between items-center w-full">
+    <h3 class="font-display text-lg sm:text-xl leading-loose">{GLOBAL.articlesName}</h3>
+    <Anchor url="/blog" class="text-base">{GLOBAL.viewAll}</Anchor>
+  </div>
+  <ul class="my-8">
+    {
+      (featuredArticles.length === 0 && <p>{GLOBAL.noArticles}</p>) ||
+        featuredArticles.map((article) => (
+          <li>
+            <ArticleSnippet
+              title={article.title}
+              description={article.description}
+              url={article.filename}
+              timestamp={article.timestamp}
+              duration={`${article.time} min`}
+            />
+          </li>
+        ))
+    }
+  </ul>
 </div>
-<ul class="my-8">
-  {
-    (featuredArticles.length === 0 && <p>{GLOBAL.noArticles}</p>) ||
-      featuredArticles.map((article) => (
-        <li>
-          <ArticleSnippet
-            title={article.title}
-            description={article.description}
-            url={article.filename}
-            timestamp={article.timestamp}
-            duration={`${article.time} min`}
-          />
-        </li>
-      ))
+
+<style>
+  .fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+    animation-delay: 1.8s; /* Slightly later than projects section for staggered effect */
   }
-</ul>
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
