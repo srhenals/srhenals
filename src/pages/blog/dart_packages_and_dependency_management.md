@@ -2,100 +2,98 @@
 layout: ../../layouts/BlogLayout.astro
 title: Dart packages & Dependency Management in Flutter
 description: A comprehensive guide explaining how to effectively manage dependencies in Dart projects, covering package structure, pubspec files, and best practices for implementing external libraries.
-tags: ["Flutter", "Dependency Management"]
+tags: ["Project Management", "Tasks"]
 time: 4
 featured: true
 timestamp: 2022-09-05T02:39:03+00:00
 filename: dart_packages_and_dependency_management
 ---
-![](https://cdn-images-1.medium.com/max/800/1*pj7bhIAgrxMVZrcEfIgZww.jpeg)
-It is no secret to anyone that the Flutter community, Google’s famous UI Toolkit, is growing exponentially, and with it the libraries with which we can manage the shared state of our application.
-However, before starting to discuss the options that Flutter and its community offer us today, it is important to remember the definition of the state and how the rendering of the widgets that we display in the application is done by the framework.
-![](https://cdn-images-1.medium.com/max/800/1*7sC9KJ_UC-yRYs6NGtLnrg.gif)
-### What is the state of an application?
-In order to understand what state management is and the managers that allow us to achieve it, we need to understand a concept that we find in multiple pages of the Flutter documentation and can become confusing especially when starting to develop cross-platform applications with this framework: **The state**.
-By reading the official Flutter documentation, we can find the definition of State described like this:
-“Whatever data you need in order to rebuild your UI at any moment in time”
-In simple terms, the state is the set of all the data we need to consider to tell our application **what** is going to be rendered when building the interface for the users.
-It should be considered that from a much more general point of view, the state includes all those resources that our application uses. That is, all those images, audios, fonts, and even animations that we use for our application. However, many of these resources are directly managed by the framework and do not require our implementations to work. It is for this reason that it is necessary to study the state that we must manage directly so that the application works according to what we need.
-Because of this, let’s review the types of state that we can face at the moment of working on our application:
-**Ephemeral State**
-When we talk about **ephemeral state**, we directly refer to all that state that is defined within a specific widget and that **does not need to be accessed by an external one in the application’s widget tree**.
-In order to use this state, we require a **StatefulWidget**, which through the *setState()* method, allows us to modify the data that is required to rebuild the widget and update the user interface as needed under the context of the application.
-In short, whenever we need to cause a widget to be rebuilt in response to user input and we don’t require that widget’s state to be used by others, using ephemeral state via a *StatefulWidget* is the most appropriate option.
-**App State**
-In a simple application, the ephemeral state may be the optimal solution. However, as the application grows and the need to share state between multiple views increases, using only ephemeral state becomes insufficient and complicates easy maintenance. Therefore, all that state that we want to share between several widgets, and even store between several user sessions, is what we call the **app** **state**.
-It is precisely this type of state that we will be discussing in this article. As we proceed, we will realize that the number of options available to manage the state correctly varies widely. However, **it is according to several factors that we will allow ourselves to decide which is the most suitable for our project**.
 
-In order to make it easier for us to identify which type of state we should use for our application, the **official Flutter documentation** offers us this simple but powerful graph:
-![](https://cdn-images-1.medium.com/max/800/1*eEycwuRvvvLcN67jhXLVTQ.png)
-It is highly important to highlight that our applications can have these two types of status at the same time. That is, **the ephemeral state and the application state are not mutually exclusive,** and identifying in which widgets of our application we can use each type will allow us to create a much cleaner and more scalable code.
-*Read more: ~[Differentiate between ephemeral and app state](https://docs.flutter.dev/development/data-and-backend/state-mgmt/ephemeral-vs-app)~*
-### Flutter is declarative
-One of the most common programming approaches to building interfaces over the last few decades has been the *imperative*. This style makes it possible to build interfaces with a focus on **how the interface is to be built**. However, Flutter being *declarative* allows you to focus on **what is going to be displayed on the interface**.
-* **Imperative approach**: Makes it possible to specify the procedure that will be followed so that the user interface is rendered and rebuilt.
-* **Declarative approach**: Allows you to specify which components of the view should be created and rebuilt without the need to specify the steps to follow to achieve this goal.
+# ![](https://cdn-images-1.medium.com/max/800/0*8KQfH7R-ws7RZ2gm.png)
+During the last couple of months, I have been trying to dive even more into the basics of Dart, the programming language developed by [Google](https://medium.com/u/be36e94a7e47). One of the topics that caught my attention was **dependency management** since this is a development aspect that can make our projects **save time and effort**.
+By understanding the basics of how dependency management works in Dart, we will be able to quickly know where to find simple solutions for complex challenges we could face during development and how to implement them.
+Without further ado,
+![](https://cdn-images-1.medium.com/max/800/1*szA0M4y56CQB3AVQsRZt2g.gif)
+### What is a Dart Package?
+It blew my mind to know that there is no such thing as a “Dart project” (conventions aside). The correct terminology for what we call a “project” is actually “Dart Package” and soon you will be understanding why! For now, let’s understand how Dart Packages work:
+According to the official **[Dart documentation](https://dart.dev/guides)**:
+A Dart package is a directory containing a [pubspec file](https://dart.dev/tools/pub/pubspec). The pubspec contains some metadata about the package. Additionally, a package can contain dependencies (listed in the pubspec), Dart libraries, apps, resources, tests, images, and examples.
+**But, what does this really mean?** Basically, you can think of a *Dart package as a box that contains everything that is necessary for us to build one or more functionalities with the Dart language*. Whenever we want to build something for our personal projects or for other developers to use, a dart package containing the logic, resources, media, and even other libraries must be created.
+![](https://cdn-images-1.medium.com/max/800/1*-Dcj0kn910_0AwNeY9khFQ.gif)
+### Dependencies of a Dart Package
+Usually, when building Flutter applications we require to implement screens with complex components, we could also need to connect to an external database with the data we need for our application. As developers, we could think about implementing all of these requirements with code built by ourselves, but in reality, **this will require time and effort we usually can’t afford when facing deadlines**. It is here that understanding and using dart libraries published by other developers with these functionalities can save us the hassle.
+**Dependency management** in Dart is as simple as it can be for developers to quickly implement publicly available libraries into their packages. Using packages created by other developers to speed up the time it requires from us to develop an application is a common practice. In addition, **it shows how working together, as a community, can help us create solutions to common problems.**
+Here we can get to one of the most interesting aspects of dart packages: A package that is not going to be publicly posted for other developers to use is called an **Application package**, while one that is going to be uploaded and made available for others is called a **Library package**.
+Once a library package is added to our package, our projects starts depending on it to achieve whatever goal it has. Therefore, This library becomes a **dependency** as soon as we add it to our package!
+### How to manage our dependencies?
+The dependencies we add to our application can be continuously improved by the developer or team maintaining them. Easier implementations and bug fixes can always come out after a library has been published. In addition, our project could depend on one library, but as it gets bigger, the chances of us using more libraries increase.
+Because of the points mentioned above, supervising our dependencies and making sure that the implementation corresponds to the version we are using is **crucial** for escalation and maintenance purposes. Glady, managing our dependencies and making sure they are updated can be very simple in Dart:
+**The Pubspec.yaml file**
+If something can be said about the dart packages is that every one of them **must** contain a *pubspec.yaml* file. Inside of it, we can specify the metadata our package needs to use its dependencies.
+In here, you can see some lines of the pubspec.yaml file created for every flutter application whenever we run the command
 
-⠀I guess that whenever we talk about how we code in Flutter we could say:
-![](https://cdn-images-1.medium.com/max/800/1*g-dVGxnRgwmDwUww98aYQA.gif)
-Ba Dum Tss!
-Additionally, Flutter doesn’t modify widget instances like other technologies. Instead, **Flutter directly creates a new widget instance when the UI is changed** due to how quickly this tool can do this.
-Considering that Flutter is declarative, this framework builds the application interface considering the state. In other words, the entire interface is built with respect to the state it has at the time of interface construction, and when it changes, the interface is rebuilt considering the new state.
-![](https://cdn-images-1.medium.com/max/800/1*EPCCvjzoEapxbpdSEV07eg.png)
-Formula obtained directly from the Flutter Documentation: ~[Start thinking declaratively](https://docs.flutter.dev/development/data-and-backend/state-mgmt/declarative)~
-With this simple formula we can conclude that **the Interface of our application is the result of the build method of our widgets based on the state of our application at the time of construction**.
-It is important to mention that the state can change due to multiple factors, among these we can identify user inputs using the application, responses to calls we make to an API and even internal threads in which we perform calculations to meet the use cases of the application. Therefore, being a declarative framework, directly specifying the state on which a widget depends for its construction is of high importance.
-### What are my state management options?
-As mentioned before, the variety of options for state management is quite wide. The Flutter community is continually offering more options, and this fact, coupled with the widely varying needs of your application, can create an overwhelming scenario.
-All in all, we will try to list the options that you will surely hear regularly when discussing State Management in Flutter:
-**Bloc**
-![](https://cdn-images-1.medium.com/max/800/1*dJJrfHjb_CRoQA37nqffvQ.png)
-Bloc stands for *Business Logic Component*, and it is one of the most popular Flutter state management patterns and libraries. It allows building robust applications through a series of events that permit processing the information received at the time of detecting them, so a new state can be created.
-Although we can find multiple libraries that implement this pattern for managing the state of our applications, the flow that it follows can be exemplified like this:
-1. The user presses an application button and **triggers an** **event**. 2. Bloc is informed about the activation of this event and **requests** the data from a **repository** in charge of providing it (through a call to a database or an API). 3. Bloc receives the requested data and, based on it, **issues a new state** with the information required by the widget that is listening to it. 4. The widget **listening** to the Bloc to get the possible states that can be sent to it, **receives the new state** and **rebuilds the widget** according to it.
-![](https://cdn-images-1.medium.com/max/800/1*qTP8QuwnwqQQZlnEHo-KWw.png)
-Awesome graph
-Bloc is a widely used library for highly scalable applications due to how its implementation can be adapted to all kinds of domain models. However, it is a library that can be complex for developers just starting out with the framework due to its significant learning curve.
-*Recommended Library: ~[Flutter_bloc](https://pub.dev/packages/flutter_bloc)~*
-**Provider**
-![](https://cdn-images-1.medium.com/max/800/1*h4AF5qVpU24WR9xGONXxjA.jpeg)
-Provider is another of the most famous community libraries. **It was one of the first recommended by Flutter for handling developer app state**.
-With Provider, widgets that report state changes are set at one point of the widget tree, while others listen for those changes to know when to do an interface rebuild. That is, as soon as changes in the state of the application are detected, the widgets that require this data to render the view to the user will be rebuilt without the need to unnecessarily affect other components in the Widgets tree.
-In Provider, we have 3 Widgets that make the above possible:
-* **ChangeNotifier**: This component allows to notify the widgets that are listening to it whenever a change of state occurs.
-* **ChangeNotifierProvider**: This component allows you to listen to and expose ChangeNotifier components. This class is basically a wrapper provider for those widgets that implement ChangeNotifier.
-* **Consumer**: This Widget is the one that listens to the changes notified by the ChangeNotifier and is in charge of running the build method to apply the changes corresponding to the new state of the application.
+`flutter create {name_of_the_app}`
 
-⠀Despite being a functional state manager for simple applications, *Remi Rousselet*, creator of this library, worked on an iteration that did not directly depend on Flutter, instead of it, this new version is directly associated with Dart.
-*Recommend Library: ~[Provider](https://pub.dev/packages/provider)~*
-**Riverpod**
-![](https://cdn-images-1.medium.com/max/800/1*m6wPdUK2w1MFrQwKosDayg.png)
-Riverpod is a library intentionally developed by *Remi Rousselet* to be a successor to Provider. It does not directly depend on Flutter, unlike Provider.
-Riverpod allows you to wrap your application in a *ProviderScope* , which **makes it possible to call and access the required Provider from any Application Widget you wish to use it in**, making it a straightforward, simple, and fast state implementation.
-AS mentioned, one of the biggest advantages of Riverpod over Provider is that since it does not depend on Widgets, it is possible to declare a provider and use it in any widget of the application regardless of the parent widget. Providers with Riverpod are declared as **global variables** that are placed in any project file.
-*Recommend Library: ~[Flutter_riverpod](https://pub.dev/packages/flutter_riverpod)~*
+As mentioned before, our dart project is actually a package. This means that just like the dependencies we add to it, our dart package should also contain a name, version, description, platforms, assets, and one of the most important fields, its **dependencies**.
+All of these aspects of our package can be specified inside the *pubspec.yaml* file!
+![](https://cdn-images-1.medium.com/max/800/1*54BAKmiUW7uklrMJDZClpg.png)
+Once we use the command to generate the initial Flutter project, a *pubspec.yaml* file shown above is generated. As you can see, it contains the aspects mentioned before **and it even supports more**, we could discuss more about this file and the possibilities it offers to us. However, what you need to consider right now is that whenever you want to manage the metadata of your dart package or **the dependencies** it is using, your go-to file is the *pubspec.yaml*!
+Every time you work on a dart package, updating the metadata inside this file accordingly is a good practice. What’s more, if you are planning on publishing your package for other developers to use it, updating the metadata becomes a mandatory task for you to consider before publishing and updating the library.
+![](https://cdn-images-1.medium.com/max/800/1*Wt6vjB0fuoeLMjtBkLAJ6A.png)
+In addition, making sure the correct name and version of the libraries you want to use add as dependencies to your package have been correctly added. Usually, maintainers use **[Semantic versioning 2.0.0](https://semver.org/)** to make sure the users consuming their dependency know when and how to work with patches and major and minor changes.
+![](https://cdn-images-1.medium.com/max/800/0*IF8LyYtfUWsQS6YN.png)
+**The Pubspec.lock file**
+Whenever we add a dependency into our *pubspec.yaml* file, all the information about it is stored inside a file that contains all the packages that the one we created requires to work. In addition, **it also contains the packages that the ones we added depend on**. The file containing all of this information is ***pubspec.lock***.
+The pubspec.lock file contains even more data about the packages our project uses. However, it does not only contain the information about the libraries we directly added inside the pubspec.yaml file. **This file also contains information about the libraries the dependencies we added depend on!**
+To make a quick summary, we can classify our dependencies according to the number of libraries they require to be associated with the package using them:
+* **Intermediate**: These are the dependencies that are directly associated with your package.
+* **Transitive**: These are the dependencies used by the packages the one you directly work on depends on.
 
-There are many other options to discuss regarding state management such as **InheritedWidget & InheritedModel**, **Redux**, **Getit**, **Mobx**, **Binder**, **GetX**, **states_rebuilder** and more. Each of these options has its own implementations, advantages, and disadvantages and it is up to you and your team to find the most suitable one for your needs.
-However, it is important to identify which of these options is best for your project and work team.
-![](https://cdn-images-1.medium.com/max/800/1*CbzlmbZPv4V8nXXme3kXDg.gif)
-### Why is it important to identify the most adequate state manager for my project?
-In the world of software and development, defining the most suitable solutions for the requirements of our project can vary depending to several factors.
-According to what we mentioned before, those simple applications in which we do not need to handle a state greater than what we will use in a single widget, **a** ***StatefulWidget*** **can be enough to meet the minimum requirements**. However, an application that has several views in which we will share a lot of data between them, share information between several users and in which it is planned to scale after finishing the version with the minimum viable product, **using StatefulWidgets may not be enough**.
-In addition to the above, each of the available state managers offers different approaches to the same goal. **Implementing** ***Bloc*** **or even** ***Provider*** **in a simple application can be overkill**, and although it is possible, there are solutions that require much less time to achieve the same goal.
-Optimizing the time it requires for a project to be completed is a very important factor in the software industry. **In addition, implementing needless and complex solutions can make our code hard to understand and refactor.**
-However, all of this is subject to criteria that will allow your team to decide which option is best for the project.
-### Which State Manager is better for my projects?
-![](https://cdn-images-1.medium.com/max/800/1*JyApmfXzf9xnpk2Jv8jUIA.gif)
-**IT DEPENDS**
-Just as we mentioned previously, **it is impossible to point to a silver bullet that offers the best solution for all the software engineering projects that we work with Flutter**. The following criteria allow us to have a better idea of which tool to manage the state offers us the best conditions for our projects:
-* **Project scalability**: Identifying the projection and planning of the project in the medium and long term will allow us to find a state manager that scales easily according to this projection.
-* **Expertise of the project development team**: Although a developer must always be willing to learn, considering the team’s domain with respect to state managers can implement much faster and more robust solutions according to the chosen option.
-* **State manager repository activity**: Choosing a state manager that is constantly updated shows that maintainers will continue to fix potential bugs and offer even easier solutions to current implementations.
-* **Documentation**: A well-documented library allows for a smooth and safe implementation, which reduces the space for bugs and performance issues.
-* **Developer community**: Having a community willing to answer questions, which in turn contributes to a much more complex documentation, facilitates the implementation and maintenance of the chosen state manager.
+⠀Let’s see an example of how the information about the packages required for our project is shown inside this file:
+```dart
+# Generated by pub
+# See https://dart.dev/tools/pub/glossary#lockfile
+packages:
+    async:
+      dependency: transitive
+      description:
+          name: async
+          url: "https://pub.dartlang.org"
+      source: hosted
+      version: "2.8.2"
+    boolean_selector:
+      dependency: transitive
+      description:
+          name: boolean_selector
+          url: "https://pub.dartlang.org"
+      source: hosted
+      version: "2.1.0"
+```
 
-⠀It is important to keep in mind that although we offer a list of aspects and/or guiding factors, **we invite you to identify and list more with your work team**, taking into account the scope of the organization. These factors can be adapted and/or or modified according to the needs of the company and the project.
-Additionally, **I strongly recommend not limiting yourself to knowing only one or two status managers**, reading about other options when you have the opportunity will allow you to make a much more solid decision to offer the best to your development team and project stakeholders!
+### So… What is the difference between libraries and packages?
+![](https://cdn-images-1.medium.com/max/800/1*yHhatnpIFZRfrhgjvZUBlw.gif)
+This is a question that I personally had for a couple of months, and the answer is very simple!
+We can understand the difference if we check the directory of one of our Flutter projects. Inside it, we can see a **lib** folder that is automatically generated. **Every file inside this folder will be accessible whenever we publish our package for others to use it.** However, other files inside the rest of the folders (like *test* or *bin*) will not be accessible to others.
+From this, we can conclude that **a package can contain one or more libraries inside of it.**
+One very important aspect to know and consider before publishing your library is that **only the information inside the lib folder will be available for other developers to use.**
+### How do I use a library package?
+There are multiple ways of adding dependencies to our project. But first we need to know where we can find these dependencies:
+**The pub package manager**
+Dart’s package manager is called **pub**, it allows us to get dependencies, upgrade, publish them, and more. Dart offers a site for users to host all the dependencies and their documentation, this is the **[pub.dev](https://pub.dev/)** site. Here, you can look for libraries your package needs and read about how they work, how to install them, and even examples of how to use them.
+![](https://cdn-images-1.medium.com/max/800/0*AfJb96S5l9ZwJ7Xf.png)
+Usually, whenever a new dependency wants to be added to you dart package and said dependency is added to pub.dev, the following command will add it with the latest version inside the pubspec.yaml file:
+```dart
+flutter pub add {dependency_name}
+```
+![](https://cdn-images-1.medium.com/max/800/1*ykQKddS-y9G3SkPgd6rePg.png)
+This command will directly add the dependency to your package and assign the targeted version to the latest stable one.
+*Keep in mind that libraries can be loaded in other places like Git or even in your local system, there are no restrictions on this aspect. Nevertheless, [pub.dev](https://pub.dev/) allows developers using dart to quickly find the dependencies they need and to easily add them to their projects.*
+**[Pubspec Assist](https://marketplace.visualstudio.com/items?itemName=jeroen-meijer.pubspec-assist)** is a VSCode plugin that allows us to immediately add to our *pubspec.yaml* file a dependency hosted directly in pub.dev
+Once we have our dependency added to our *pubspec.yaml* file, we only need to import it inside the dart file we will use it and enjoy it! Each dependency has its own implementation methods. But checking the documentation from the page you have downloaded it from will surely make your life easier.
 
-Thank you very much for the time spent reading this article. I hope that you can use the knowledge exposed here to work on the best possible solution regarding state managers for Flutter projects with your team.
-![](https://cdn-images-1.medium.com/max/800/1*20RbrNFz0lUCQpLSs67ihQ.gif)
+Dependency management with Dart allows us to be efficient with the time it takes to develop a dart package. There are multiple options for us to add dependencies to our applications, but understanding how they work and how they relate to each other once we implement them can help us know how our package behaves even more.
+The Dart community is growing at a great speed, meaning that more libraries that help us create awesome applications using Flutter will be available each day. Whenever you build an awesome dart package that could save time and effort from other developers, **consider making your package publicly available!**
+*Appreciate the lessons taught by [@letsgetwckd](https://twitter.com/letsgetwckd) on his [Dart course](https://www.youtube.com/watch?v=uZvoTCSsfjo&list=PLptHs0ZDJKt_fLp8ImPQVc1obUJKDSQL7&ab_channel=Flutterly) for helping me understand even more the concepts explained here.*
+Thanks for reading!
+![](https://cdn-images-1.medium.com/max/800/1*KzRW1rw8pTBTPU4llLRyzg.gif)
+

@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/BlogLayout.astro
-title: Dart packages & Dependency Management in Flutter
+title: State Management with Flutter
 description: A comprehensive overview of state management options in Flutter, explaining the difference between ephemeral and app state, Flutter's declarative nature, and comparing popular state management solutions like Bloc, Provider, and Riverpod with guidance on choosing the right approach for your project.
 tags: ["Flutter", "State Management"]
 time: 4
