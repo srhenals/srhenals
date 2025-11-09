@@ -31,6 +31,11 @@ export const GLOBAL = {
   projectShortDescription: "A list of my web development projects and developer tools.",
   projectLongDescription: "All of my projects, including both frontend and full-stack applications.",
 
+  // Travel blog metadata
+  travelBlogTitle: "Travel Blog",
+  travelBlogShortDescription: "My travel adventures around the world.",
+  travelBlogLongDescription: "Daily entries from my travels, documenting experiences from different countries.",
+
   // Profile image
   profileImage: "pp.webp",
 
@@ -39,5 +44,6 @@ export const GLOBAL = {
     home: "/",
     projects: "/projects",
     blog: "/blog",
+    travel: "/travel",
   }
 };

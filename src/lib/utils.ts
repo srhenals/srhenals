@@ -19,7 +19,7 @@ type MarkdownData<T extends object> = {
  * @returns a promise that resolves to an array of processed content
  */
 export const processContentInDir = async <T extends object, K>(
-  contentType: "projects" | "blog",
+  contentType: "projects" | "blog" | "travel",
   processFn: (data: MarkdownData<T>) => K,
   dir: string = process.cwd(),
 ) => {
@@ -38,10 +38,20 @@ export const processContentInDir = async <T extends object, K>(
         url: string;
       };
       return processFn(data);
-    } else {
+    } else if (contentType === "blog") {
       const content = import.meta
         .glob(`/src/pages/blog/*.md`)
         [`/src/pages/blog/${file}.md`]();
+      const data = (await content) as {
+        frontmatter: T;
+        file: string;
+        url: string;
+      };
+      return processFn(data);
+    } else {
+      const content = import.meta
+        .glob(`/src/pages/travel/*.md`)
+        [`/src/pages/travel/${file}.md`]();
       const data = (await content) as {
         frontmatter: T;
         file: string;
@@ -86,7 +96,7 @@ export const processArticleDate = (timestamp: string) => {
  */
 export const generateSourceUrl = (
   sourceUrl: string,
-  contentType: "projects" | "blog",
+  contentType: "projects" | "blog" | "travel",
 ) => {
   return `${GLOBAL.rootUrl}/${contentType}/${sourceUrl}`;
 };

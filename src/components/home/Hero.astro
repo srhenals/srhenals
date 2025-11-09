@@ -6,7 +6,7 @@ import { GLOBAL } from "../../lib/variables";
   <img
     src={GLOBAL.profileImage}
     alt={GLOBAL.username}
-    class="rounded-full max-w-40 w-40 h-40 mb-4 z-0 brightness-105 contrast-105 saturate-70 hue-rotate-[10deg] animate-fadeIn"
+    class="rounded-full w-40 h-40 object-cover flex-shrink-0 mb-4 z-0 brightness-105 contrast-105 saturate-70 hue-rotate-[10deg] animate-fadeIn"
   />
   <div>
     <h1
@@ -19,9 +19,6 @@ import { GLOBAL } from "../../lib/variables";
     >
       <p set:html={GLOBAL.shortDescription}/>
     </h2>
-    <p class="text-center text-base sm:text-lg italic mt-2 sm:text-left fade-in">
-      (And sometimes a backender...)
-    </p>
   </div>
 </div>
 

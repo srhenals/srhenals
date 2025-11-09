@@ -81,3 +81,46 @@ export type ArticleFrontmatter = {
    */
   filename: string;
 };
+
+export type TravelEntryFrontmatter = {
+  /**
+   * The title of the travel entry
+   */
+  title: string;
+
+  /**
+   * The summary description of the travel entry
+   */
+  description: string;
+
+  /**
+   * The country visited
+   */
+  country: string;
+
+  /**
+   * The location/city visited
+   */
+  location: string;
+
+  /**
+   * The estimated time to read the entry in minutes
+   */
+  time: number;
+
+  /**
+   * Whether the entry should be featured on the homepage
+   */
+  featured?: boolean;
+
+  /**
+   * The date of the travel day in W3C format
+   */
+  timestamp: string;
+
+  /**
+   * The URL of the entry on the website
+   * (eg. https://zaggonaut.dev/travel/my-travel-entry)
+   */
+  filename: string;
+};
