@@ -33,8 +33,34 @@ import { articles } from "../../lib/list";
     <link rel="canonical" href={`${GLOBAL.rootUrl}/blog`} />
   </Fragment>
   <Section class="my-8">
-    <div class="flex items-center gap-4 pt-8 pb-16">
-      <h1 class="font-display font-bold text-3xl sm:text-4xl leading-loose">{GLOBAL.articlesName}</h1>
+    <div class="flex flex-col pt-4 pb-4">
+      <!-- GenAI Disclaimer -->
+      <div class="mb-1 group">
+        <h2 class="font-display font-semibold text-xl text-orange-600 dark:text-gray-900 cursor-pointer hover:text-orange-800 dark:hover:text-gray-700 transition-colors duration-200 relative">
+          <span class="relative z-10">GenAI is not used to write any of the blog posts.</span>
+          <span class="absolute inset-0 bg-yellow-200 dark:bg-white opacity-60 -skew-y-1 transform rotate-1 scale-105 rounded-sm -z-10"></span>
+        </h2>
+        <div class="mt-3 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 opacity-0 group-hover:opacity-100 sm:group-hover:opacity-100 focus-within:opacity-100 transition-opacity duration-500 max-h-0 overflow-hidden group-hover:max-h-96 focus-within:max-h-96 transition-all duration-500 ease-in-out relative">
+          <div class="text-gray-700 dark:text-gray-300 leading-relaxed space-y-3 relative z-10">
+            <p>
+              I am a human who decided to write about stuff I enjoy and want to share. I believe that these kind of things should be done from the heart and mind of its creator. However, I do believe AI can be a great tool when used to understand concepts and find sources of knowlegde as long as they are validated.
+            </p>
+            <p>
+              Because of this, I might have used AI to comprehend what I am writing here, but never to generate text or adjust my writing.
+            </p>
+            <p class="font-bold">
+              Every word, idea and mistake has come directly from me.
+            </p>
+            <p>
+              This is taking effect starting from December 2025.
+            </p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-4">
+        <h1 class="font-display font-bold text-3xl sm:text-4xl leading-loose">{GLOBAL.articlesName}</h1>
+      </div>
     </div>
     <ul>
       {

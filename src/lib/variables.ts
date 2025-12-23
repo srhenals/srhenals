@@ -9,7 +9,7 @@ export const GLOBAL = {
   
   // Social media links
   githubProfile: "https://github.com/srhenals",
-  twitterProfile: "https://x.com/SRhenalsR",
+  twitterProfile: "https://x.com/imadeaplaylist",
   linkedinProfile: "https://www.linkedin.com/in/santiagorr6/",
   
   // Common text names used throughout the site
