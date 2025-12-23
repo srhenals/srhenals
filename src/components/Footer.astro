@@ -1,5 +1,5 @@
 ---
-import { GLOBAL } from "../lib/variables";
+import { GLOBAL, TRANSLATIONS } from "../lib/variables";
 import Anchor from "./common/Anchor.astro";
 import Section from "./common/Section.astro";
 
@@ -15,7 +15,9 @@ const year = date.getFullYear();
       <ul class="flex flex-col gap-2">
         {Object.entries(GLOBAL.menu).map((i) => (
           <li>
-            <Anchor url={i[1]}>{i[0]}</Anchor>
+            <Anchor url={i[1]}>
+              <span data-lang-en={TRANSLATIONS.en[i[0]]} data-lang-es={TRANSLATIONS.es[i[0]]} class="lang-text">{TRANSLATIONS.en[i[0]]}</span>
+            </Anchor>
           </li>
         ))}
       </ul>
@@ -80,7 +82,7 @@ const year = date.getFullYear();
   <p
     class="zag-text zag-transition text-center text-sm font-medium"
   >
-    &copy; {year} {GLOBAL.username}. All rights reserved.
+    &copy; {year} {GLOBAL.username}. <span class="lang-text" data-lang-en={TRANSLATIONS.en.allRightsReserved} data-lang-es={TRANSLATIONS.es.allRightsReserved}>{TRANSLATIONS.en.allRightsReserved}</span>
   </p>
 </footer>
 

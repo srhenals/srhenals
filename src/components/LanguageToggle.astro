@@ -1,0 +1,38 @@
+---
+
+---
+
+<button class="border-none bg-none focus:outline-2 focus:outline-offset-2 focus:outline-zag-dark dark:focus:outline-zag-light" id="langToggle" aria-label="Language Toggle">
+  <div class="flex items-center justify-center w-[30px] h-[30px] text-sm font-bold text-neutral-900 dark:text-neutral-100 hover:opacity-75 transition-opacity">
+    <span id="langIcon">EN</span>
+  </div>
+</button>
+
+<script is:inline>
+  const getStoredLanguage = () => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("language")) {
+      return localStorage.getItem("language") ?? "en";
+    }
+    return "en";
+  };
+
+  const setLanguage = (lang) => {
+    document.documentElement.setAttribute("data-lang", lang);
+    localStorage.setItem("language", lang);
+    document.getElementById("langIcon").textContent = lang === "en" ? "EN" : "ES";
+  };
+
+  // Initialize language
+  const currentLang = getStoredLanguage();
+  setLanguage(currentLang);
+
+  const handleLanguageToggle = () => {
+    const currentLang = document.documentElement.getAttribute("data-lang");
+    const newLang = currentLang === "en" ? "es" : "en";
+    setLanguage(newLang);
+  };
+
+  document
+    .getElementById("langToggle")
+    ?.addEventListener("click", handleLanguageToggle);
+</script>

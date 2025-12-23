@@ -1,6 +1,6 @@
 ---
 import type { ArticleFrontmatter } from "../../lib/types";
-import { GLOBAL } from "../../lib/variables";
+import { GLOBAL, TRANSLATIONS } from "../../lib/variables";
 import ArticleSnippet from "../ArticleSnippet.astro";
 import Anchor from "../common/Anchor.astro";
 
@@ -13,12 +13,12 @@ const { featuredArticles } = Astro.props;
 
 <div class="fade-in-section">
   <div class="flex justify-between items-center w-full">
-    <h3 class="font-display font-bold text-lg sm:text-xl leading-loose">{GLOBAL.articlesName}</h3>
-    <Anchor url="/blog" class="text-base">{GLOBAL.viewAll}</Anchor>
+    <h3 class="font-display font-bold text-lg sm:text-xl leading-loose lang-text" data-lang-en={TRANSLATIONS.en.articlesName} data-lang-es={TRANSLATIONS.es.articlesName}>{TRANSLATIONS.en.articlesName}</h3>
+    <Anchor url="/blog" class="text-base lang-text" data-lang-en={TRANSLATIONS.en.viewAll} data-lang-es={TRANSLATIONS.es.viewAll}>{TRANSLATIONS.en.viewAll}</Anchor>
   </div>
   <ul class="my-8">
     {
-      (featuredArticles.length === 0 && <p>{GLOBAL.noArticles}</p>) ||
+      (featuredArticles.length === 0 && <p class="lang-text" data-lang-en={TRANSLATIONS.en.noArticles} data-lang-es={TRANSLATIONS.es.noArticles}>{TRANSLATIONS.en.noArticles}</p>) ||
         featuredArticles.map((article) => (
           <li>
             <ArticleSnippet

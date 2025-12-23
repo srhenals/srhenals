@@ -24,5 +24,45 @@ import "../styles/global.css";
       <slot />
     </main>
     <Footer />
+    
+    <script is:inline>
+      // Language switching functionality
+      function updateLanguage() {
+        const currentLang = document.documentElement.getAttribute("data-lang") || "en";
+        
+        // Update all translatable elements
+        document.querySelectorAll(".lang-text").forEach(element => {
+          const enText = element.getAttribute("data-lang-en");
+          const esText = element.getAttribute("data-lang-es");
+          element.textContent = currentLang === "es" ? esText : enText;
+        });
+        
+        // Update page titles
+        document.querySelectorAll("[data-lang-en]").forEach(element => {
+          if (!element.classList.contains("lang-text")) {
+            const enText = element.getAttribute("data-lang-en");
+            const esText = element.getAttribute("data-lang-es");
+            element.textContent = currentLang === "es" ? esText : enText;
+          }
+        });
+      }
+      
+      // Listen for language changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'data-lang') {
+            updateLanguage();
+          }
+        });
+      });
+      
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-lang']
+      });
+      
+      // Initialize language on page load
+      document.addEventListener('DOMContentLoaded', updateLanguage);
+    </script>
   </body>
 </html>

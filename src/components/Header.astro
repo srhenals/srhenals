@@ -1,7 +1,8 @@
 ---
-import { GLOBAL } from "../lib/variables";
+import { GLOBAL, TRANSLATIONS } from "../lib/variables";
 import Anchor from "./common/Anchor.astro";
 import ThemeToggle from "./ThemeToggle.astro";
+import LanguageToggle from "./LanguageToggle.astro";
 ---
 
 <header
@@ -29,7 +30,9 @@ import ThemeToggle from "./ThemeToggle.astro";
       class="flex flex-col font-mono font-medium gap-4 sm:flex-row px-4 sm:px-0 mt-16 sm:mt-0"
     >
     {Object.entries(GLOBAL.menu).map((i) => (
-      <Anchor url={i[1]}>{i[0]}</Anchor>
+      <Anchor url={i[1]}>
+        <span data-lang-en={TRANSLATIONS.en[i[0]]} data-lang-es={TRANSLATIONS.es[i[0]]} class="lang-text">{TRANSLATIONS.en[i[0]]}</span>
+      </Anchor>
     ))}
     </div>
     <div class="flex gap-4 justify-between px-4 sm:px-0">
@@ -46,6 +49,7 @@ import ThemeToggle from "./ThemeToggle.astro";
           ></path>
         </svg>
       </Anchor>)}
+      <LanguageToggle />
       <ThemeToggle />
     </div>
   </nav>
