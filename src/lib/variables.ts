@@ -3,7 +3,7 @@
 export const GLOBAL = {
   // Site metadata
   username: "SRhenals",
-  rootUrl: "https://zaggonaut.dev",
+  rootUrl: "https://srhenals.com",
   shortDescription: "Flutter & iOS Mobile Developer",
   longDescription: "Zaggonaut is a retro-inspired theme for Astro, built using TypeScript, TailwindCSS, and Astro.",
   
