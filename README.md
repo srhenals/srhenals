@@ -13,7 +13,7 @@ Big fan of Tolkien, open source, and exploring new ideas.
 > “It's the job that never gets started that takes longest to finish.” – Tolkien
 
 🌐 [srhenals.com](https://srhenals.com)  
-📬 sr.general@proton.me
+📬 santiago@srhenals.com
 
 ---
 
