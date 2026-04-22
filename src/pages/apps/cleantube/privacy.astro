@@ -1,0 +1,215 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Section from "../../../components/common/Section.astro";
+import Prose from "../../../components/Prose.astro";
+import { GLOBAL } from "../../../lib/variables";
+
+const title = "CleanTube — Privacy Policy";
+const url = `${GLOBAL.rootUrl}/apps/cleantube/privacy`;
+---
+
+<Layout>
+  <Fragment slot="head">
+    <title>{title} • {GLOBAL.username}</title>
+    <meta name="description" content="Privacy policy for CleanTube, a Safari browser extension for macOS that removes distracting elements from YouTube." />
+    <meta property="og:title" content={`${title} • ${GLOBAL.username}`} />
+    <meta property="og:description" content="CleanTube is designed to work entirely on your device. It does not collect, transmit, sell, or share any personal data." />
+    <meta property="og:url" content={url} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={`${title} • ${GLOBAL.username}`} />
+    <meta name="twitter:description" content="CleanTube is designed to work entirely on your device. It does not collect, transmit, sell, or share any personal data." />
+    <meta http-equiv="content-language" content="en" />
+    <meta name="language" content="English" />
+    <link rel="canonical" href={url} />
+  </Fragment>
+  <Section class="mt-8 mb-16">
+    <Prose>
+      <h1>CleanTube — Privacy Policy</h1>
+
+      <p><strong>Effective date:</strong> 2026-04-21<br /><strong>Last updated:</strong> 2026-04-21</p>
+
+      <p>
+        CleanTube ("the app", "we", "our") is a Safari browser extension for macOS that modifies the
+        appearance of YouTube web pages to remove Shorts, recommended videos, the Home tab, and
+        related distracting elements, and to redirect the YouTube home page to the Subscriptions feed.
+      </p>
+
+      <p>
+        This Privacy Policy explains what information the app does and does not handle.
+        <strong>CleanTube is designed to work entirely on your device. It does not collect,
+        transmit, sell, or share any personal data.</strong>
+      </p>
+
+      <hr />
+
+      <h2>1. Information We Collect</h2>
+
+      <p><strong>None.</strong></p>
+
+      <p>
+        CleanTube does not collect, store, or transmit any personally identifiable information (PII).
+        Specifically, the app does not collect:
+      </p>
+
+      <ul>
+        <li>Your name, email address, phone number, or any account credentials</li>
+        <li>Your IP address, device identifiers, or advertising identifiers</li>
+        <li>Your browsing history, search history, or the URLs of pages you visit</li>
+        <li>The content of videos you watch, comments, likes, subscriptions, or any YouTube activity</li>
+        <li>Location data</li>
+        <li>Usage analytics, crash reports, or telemetry</li>
+        <li>Cookies or tracking pixels set by CleanTube</li>
+      </ul>
+
+      <p>We have no servers, no accounts, no logins, and no backend that receives any data from you.</p>
+
+      <h2>2. Information Stored Locally on Your Device</h2>
+
+      <p>
+        CleanTube stores a small set of <strong>user preferences</strong> locally on your Mac so the
+        extension remembers how you have configured it. These preferences are simple on/off toggles:
+      </p>
+
+      <ul>
+        <li><code>hideShorts</code> — whether to hide Shorts</li>
+        <li><code>redirectToSubscriptions</code> — whether to redirect the YouTube home page to Subscriptions</li>
+        <li><code>hideRecommendations</code> — whether to hide recommended videos on watch pages</li>
+        <li><code>hideHomeTab</code> — whether to hide the Home tab in the sidebar</li>
+        <li><code>hideAskGemini</code> — whether to hide Ask Gemini elements</li>
+      </ul>
+
+      <p>
+        These values are stored using Safari's standard WebExtension storage APIs
+        (<code>browser.storage.local</code>) and the macOS app's local user defaults. They never
+        leave your device. Uninstalling the app removes them.
+      </p>
+
+      <h2>3. How the Extension Works on YouTube Pages</h2>
+
+      <p>
+        CleanTube runs a content script on pages under <code>youtube.com</code> in order to hide UI
+        elements (Shorts, recommendations, etc.) using CSS and JavaScript. The script only
+        <strong>reads and modifies the DOM of YouTube pages that you are already viewing</strong> in
+        order to apply your chosen preferences. It does not:
+      </p>
+
+      <ul>
+        <li>Send any information about the page, the video, or your activity anywhere</li>
+        <li>Intercept, record, or modify your interactions with YouTube beyond hiding elements</li>
+        <li>Inject ads or third-party content</li>
+      </ul>
+
+      <p>
+        The only network navigation the extension performs is a local redirect from
+        <code>youtube.com/</code> to <code>youtube.com/feed/subscriptions</code> in your own
+        browser, when you have that option enabled.
+      </p>
+
+      <h2>4. Permissions We Request (and Why)</h2>
+
+      <p>Safari/WebExtension permissions declared by CleanTube and their purpose:</p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Permission</th>
+            <th>Why it is needed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Access to <code>youtube.com</code> (host permission)</td>
+            <td>To hide Shorts, recommendations, and perform the Subscriptions redirect on YouTube pages.</td>
+          </tr>
+          <tr>
+            <td><code>activeTab</code></td>
+            <td>To apply preferences to the YouTube tab currently in use.</td>
+          </tr>
+          <tr>
+            <td><code>tabs</code></td>
+            <td>To detect navigation on YouTube so preferences are re-applied on SPA page changes.</td>
+          </tr>
+          <tr>
+            <td><code>storage</code></td>
+            <td>To save your preference toggles locally on your device.</td>
+          </tr>
+          <tr>
+            <td><code>nativeMessaging</code></td>
+            <td>To let the Safari extension and the accompanying macOS app share your preference toggles locally. No data is sent over the internet.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>CleanTube does not request access to any website other than YouTube.</p>
+
+      <h2>5. Third-Party Services</h2>
+
+      <p>
+        CleanTube does <strong>not</strong> integrate with, send data to, or load code from any
+        third-party analytics, advertising, crash reporting, A/B testing, or tracking services.
+        There are no third-party SDKs in the app.
+      </p>
+
+      <p>
+        Note: YouTube itself is operated by Google and has its own privacy practices. When you use
+        YouTube in your browser, Google's Privacy Policy applies to that use, independent of
+        CleanTube. CleanTube has no affiliation with, and is not endorsed by, YouTube or Google LLC.
+      </p>
+
+      <h2>6. Children's Privacy</h2>
+
+      <p>
+        CleanTube does not knowingly collect any information from anyone, including children under 13.
+        Because the app collects no personal data at all, it complies with the U.S. Children's Online
+        Privacy Protection Act (COPPA) and the EU General Data Protection Regulation (GDPR) by design.
+      </p>
+
+      <h2>7. Data Retention and Deletion</h2>
+
+      <p>
+        Because we do not collect or transmit any data, there is nothing for us to retain or delete
+        on any server. Locally stored preference toggles remain on your device until you:
+      </p>
+
+      <ul>
+        <li>Change them in the extension's popup or the companion macOS app, or</li>
+        <li>Uninstall the CleanTube extension / app, or</li>
+        <li>Clear Safari's extension data for CleanTube.</li>
+      </ul>
+
+      <h2>8. Your Rights (GDPR / CCPA)</h2>
+
+      <p>
+        Because CleanTube does not collect or process personal data, there is no personal data for us
+        to access, correct, export, or delete on your behalf. You retain full control of your local
+        preferences on your own device at all times.
+      </p>
+
+      <h2>9. Security</h2>
+
+      <p>
+        All preference data is stored locally on your Mac using the standard storage mechanisms
+        provided by Safari and macOS. We do not operate any servers, so there is no remote database
+        that could be breached.
+      </p>
+
+      <h2>10. Changes to This Policy</h2>
+
+      <p>
+        If this policy is ever updated, the new version will be posted at the same URL with a revised
+        "Last updated" date. Material changes will be highlighted at the top of the page. Continued
+        use of CleanTube after an update constitutes acceptance of the revised policy.
+      </p>
+
+      <h2>11. Contact</h2>
+
+      <p>If you have any questions about this Privacy Policy or CleanTube's privacy practices, contact:</p>
+
+      <ul>
+        <li><strong>Developer:</strong> Santiago Rhenals</li>
+        <li><strong>Email:</strong> mbcxqmbzbc@privaterelay.appleid.com</li>
+        <li><strong>App:</strong> CleanTube for Safari (macOS)</li>
+      </ul>
+    </Prose>
+  </Section>
+</Layout>
