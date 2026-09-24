@@ -1,0 +1,21 @@
+---
+import { PLAYLIST_REDIRECTS } from "../../lib/playlists";
+
+const destination = PLAYLIST_REDIRECTS.second;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="refresh" content={`0;url=${destination}`} />
+    <meta name="robots" content="noindex" />
+    <title>Redirecting…</title>
+    <script is:inline define:vars={{ destination }}>
+      window.location.replace(destination);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to the playlist…</p>
+    <p><a href={destination}>Continue to the playlist</a></p>
+  </body>
+</html>
